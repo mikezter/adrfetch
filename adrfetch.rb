@@ -28,12 +28,11 @@ class CollectSenders
 
   def process(email)
     @addresses << construct_address(email.from.first)
-    require 'pry';binding.pry
+    email.move_to! @dest_label
+    @addresses.last
   end
 
   def construct_address(from)
     "#{from.mailbox}@#{from.host}"
   end
-
 end
-
